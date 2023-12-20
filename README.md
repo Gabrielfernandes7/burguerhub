@@ -1,14 +1,17 @@
-# burguerhub
+# Burguer Hub
 
-This template should help get you started developing with Vue 3 in Vite.
+Este projeto foi desenvolvido com Vue 3 no Vite.
 
-## Recommended IDE Setup
+Trata-se de um projeto desenvolvido com finalidade de ser um sistema
+de agendamento de pedidos de hamburgers onde o cliente poderá solicitar o hamburger
+e saber em que estágio se encontra o hamburger. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+No final, a aplicação irá emitir uma
+comanda de quantos hamburgeres foi consumido pelo cliente em questão.
 
-## Customize configuration
+## Costumizar configurações do projeto
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Veja [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
