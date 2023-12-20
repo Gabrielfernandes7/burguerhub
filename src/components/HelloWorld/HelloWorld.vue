@@ -1,3 +1,10 @@
+<script setup>
+import NavbarComponent from 
+  "@/components/templates/NavbarComponent/NavbarComponent.vue"
+</script>
+
 <template>
-  <div>Hello World</div>
+  <NavbarComponent>
+    <div>Hello World</div>
+  </NavbarComponent>
 </template>
