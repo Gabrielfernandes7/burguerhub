@@ -8,7 +8,7 @@
   
 <style scoped>
 #footer {
-    position: absolute;
+    position: fixed;
     height: 100px;
     border-top: 4px solid #111;
     color: #fcba03;
