@@ -2,6 +2,8 @@
 
 import ButtonSubmitFormCustomer from '../../atoms/ButtonSubmitFormCustomer/ButtonSubmitFormCustomer.vue';
 
+import Message from '@/components/atoms/Message/Message.vue';
+
 </script>
 
 <script>
@@ -17,7 +19,7 @@ export default {
       carne: null,
       opcionais: [],
       status: "Solicitado",
-      msg: null
+      message: null
     }
   },
   methods: {
@@ -53,10 +55,10 @@ export default {
 
       console.log(res)
 
-      this.msg = "Pedido realizado com sucesso!"
+      this.message = "Pedido realizado com sucesso!"
 
       // clear message
-      setTimeout(() => this.msg = "", 3000)
+      setTimeout(() => this.message = "", 3000)
 
       // limpar campos
       this.nome = ""
@@ -74,9 +76,13 @@ export default {
 
 <template>
     <div>
+        <Message 
+          :message="message" 
+          v-show="message" 
+        />
         <form method="post"
             @submit="createBurger"
-            class="form-control"
+            class="form-control bg-dark"
             id="burger-form"
             action="">
             <div class="input-container">
@@ -128,11 +134,9 @@ export default {
 
 <style scoped>
 #burger-form {
-    max-width: 400px;
-    margin: 0 auto;
+  max-width: 25rem;
+  margin: 2.5vh auto 5vh;
 
-    margin-top: 20px;
-
-    border: 2px solid rgb(231, 12, 12);
+  color: white;
 }
 </style>
