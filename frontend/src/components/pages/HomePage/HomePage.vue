@@ -1,15 +1,15 @@
-<script setup>
+<script lang="ts" setup>
 import NavbarTemplate from 
-  "../../templates/NavbarComponent/NavbarTemplate.vue"
+  "../../templates/NavbarComponent/NavbarTemplate.vue";
 
 import FooterComponent from
-  "../../atoms/FooterComponent/FooterComponent.vue"
+  "../../atoms/FooterComponent/FooterComponent.vue";
 
 import BannerHome from 
-  "@/components/atoms/BannerHome/BannerHome.vue";
+  "../../atoms/BannerHome/BannerHome.vue";
 
 import BurgerForm from 
-  "@/components/molecules/BurgerForm/BurgerForm.vue"
+  "../../molecules/BurgerForm/BurgerForm.vue";
 </script>
 
 <template>

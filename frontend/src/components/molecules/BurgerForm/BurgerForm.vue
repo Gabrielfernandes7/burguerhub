@@ -1,77 +1,84 @@
-<script setup>
+<script lang="ts" setup>
 
+import { ref, reactive, onMounted } from 'vue';
 import ButtonSubmitFormCustomer from '../../atoms/ButtonSubmitFormCustomer/ButtonSubmitFormCustomer.vue';
+import Message from '../../atoms/Message/Message.vue';
 
-import Message from '@/components/atoms/Message/Message.vue';
-
-</script>
-
-<script>
-export default {
-  name: "BurgerForm",
-  data() {
-    return {
-      paes: null,
-      carnes: null,
-      opcionaisdata: null,
-      nome: null,
-      pao: null,
-      carne: null,
-      opcionais: [],
-      status: "Solicitado",
-      message: null
-    }
-  },
-  methods: {
-    async getIngredientes() {
-      const req = await fetch('http://localhost:3000/ingredientes')
-      const data = await req.json()
-
-      this.paes = data.paes
-      this.carnes = data.carnes
-      this.opcionaisdata = data.opcionais
-    },
-    async createBurger(e) {
-
-      e.preventDefault()
-
-      const data = {
-        nome: this.nome,
-        carne: this.carne,
-        pao: this.pao,
-        opcionais: Array.from(this.opcionais),
-        status: "Solicitado"
-      }
-
-      const dataJson = JSON.stringify(data)    
-
-      const req = await fetch("http://localhost:3000/burgers", {
-        method: "POST",
-        headers: { "Content-Type" : "application/json" },
-        body: dataJson
-      });
-
-      const res = await req.json()
-
-      console.log(res)
-
-      this.message = "Pedido realizado com sucesso!"
-
-      // clear message
-      setTimeout(() => this.message = "", 3000)
-
-      // limpar campos
-      this.nome = ""
-      this.carne = ""
-      this.pao = ""
-      this.opcionais = []
-      
-    }
-  },
-  mounted () {
-    this.getIngredientes()
-  },
+type Ingrediente = {
+  id: number;
+  tipo: string;
 }
+
+type BurgerData = {
+  nome: string | null;
+  carne: string | null;
+  pao: string | null;
+  opcionais: string[];
+  status: string;
+}
+
+const paes = ref<Ingrediente[] | null>(null);
+const carnes = ref<Ingrediente[] | null>(null);
+const opcionaisdata = ref<Ingrediente[] | null>(null);
+const nome = ref<string | null>(null);
+const pao = ref<string | null>(null);
+const carne = ref<string | null>(null);
+const opcionais = ref<string[]>([]);
+const status = ref<string>("Solicitado");
+const message = ref<string | null>(null);
+
+// Função para obter ingredientes
+const getIngredientes = async () => {
+  const req = await fetch('http://localhost:3000/ingredientes');
+  const data = await req.json();
+
+  paes.value = data.paes;
+  carnes.value = data.carnes;
+  opcionaisdata.value = data.opcionais;
+};
+
+// Função para criar o burger
+const createBurger = async (e: Event) => {
+  e.preventDefault();
+
+  const data: BurgerData = {
+    nome: nome.value,
+    carne: carne.value,
+    pao: pao.value,
+    opcionais: Array.from(opcionais.value),
+    status: "Solicitado"
+  };
+
+  const dataJson = JSON.stringify(data);
+
+  const req = await fetch("http://localhost:3000/burgers", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: dataJson
+  });
+
+  const res = await req.json();
+  console.log(res);
+
+  message.value = "Pedido realizado com sucesso!";
+
+  // Limpar a mensagem após 3 segundos
+  setTimeout(() => {
+    message.value = "";
+  }, 3000);
+
+  // Limpar campos do formulário
+  nome.value = "";
+  carne.value = "";
+  pao.value = "";
+  opcionais.value = [];
+};
+
+// Chamar a função ao montar o componente
+onMounted(() => {
+  getIngredientes();
+});
+
 </script>
 
 <template>

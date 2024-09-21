@@ -1,9 +1,9 @@
-<script setup>
+<script lang="ts" setup>
 import NavbarTemplate from 
   "../../templates/NavbarComponent/NavbarTemplate.vue"
 
 import DashboardComponent from
-  "@/components/organisms/Dashboard/Dashboard.vue"
+  "../../organisms/Dashboard/Dashboard.vue"
 </script>
 
 <template>
